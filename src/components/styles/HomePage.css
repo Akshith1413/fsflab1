@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+.homepage-container {
+          position: relative;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          overflow: hidden;
+          min-height: 100vh;
+          font-family: 'Comic Neue', cursive, sans-serif;
+        }
+
+        .homepage-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          margin-bottom: 2rem;
+          position: relative;
+          animation: slideDown 0.8s ease-out;
+        }
+
+        .homepage-header h1 {
+          color: #8338EC;
+          font-size: 2.5rem;
+          text-align: center;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+          background: linear-gradient(45deg, #8338EC, #3A86FF);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .header-icon {
+          font-size: 3rem;
+          color: #FF6B6B;
+          animation: bounce 2s ease-in-out infinite;
+        }
+
+        .star-count {
+          position: absolute;
+          right: 2rem;
+          top: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: linear-gradient(135deg, #FFF, #F7FFF7);
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          font-weight: bold;
+          color: #FFBE0B;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          animation: pulse 2s ease-in-out infinite;
+        }
+
+        .introduction {
+          background: linear-gradient(135deg, #F7FFF7, #E8F5E8);
+          padding: 1.5rem;
+          border-radius: 20px;
+          margin-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+          animation: slideUp 0.8s ease-out 0.2s both;
+          border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .introduction p {
+          font-size: 1.2rem;
+          color: #1A535C;
+          max-width: 80%;
+          line-height: 1.6;
+        }
+
+        .highlight {
+          color: #FF6B6B;
+          font-weight: bold;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .helper-character {
+          font-size: 2.5rem;
+          color: #45B7D1;
+          animation: wiggle 3s ease-in-out infinite;
+        }
+
+        .family-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .family-member {top: 2.6rem;
+          background: linear-gradient(135deg, white, #fafafa);
+          border-radius: 20px;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2rem;margin-left: 5px;margin-right: 5px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          position: relative;
+          overflow: hidden;
+          animation: slideUp 0.6s ease-out both;
+          border: 2px solid transparent;
+          margin-bottom: 1.4rem;
+          
+        }
+
+        .family-member::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, var(--member-color, #FF6B6B), transparent);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+
+        .family-member:hover {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+          border-color: var(--member-color, #FF6B6B);
+        }
+
+        .family-member:hover::before {
+          opacity: 0.05;
+        }
+
+        .family-member.active {
+          background: linear-gradient(135deg, #F7FFF7, #E8F5E8);
+          box-shadow: 0 0 0 3px var(--member-color, #45B7D1), 0 15px 35px rgba(0, 0, 0, 0.2);
+          transform: translateY(-5px) scale(1.05);
+        }
+
+        .family-member.viewed {
+          background: linear-gradient(135deg, #FFF8E1, #F3E5AB);
+        }
+
+        .member-image {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.3s ease;
+        }
+
+        .family-member:hover .member-image {
+          transform: scale(1.1) rotate(5deg);
+        }
+
+        .member-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border: 5px solid;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+
+        .viewed-badge {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background: linear-gradient(135deg, #FFBE0B, #FFA000);
+          color: white;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1rem;
+          animation: starBurst 0.5s ease-out;
+          box-shadow: 0 3px 10px rgba(255, 190, 11, 0.4);
+        }
+
+        .family-member h3 {
+          color: #1A535C;
+          font-size: 1.3rem;
+          margin: 0;
+          font-weight: bold;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .speak-button {
+          background: linear-gradient(135deg, #4ECDC4, #44A08D);
+          color: white;
+          border: none;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          font-size: 1.2rem;
+          box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .speak-button:hover {
+          background: linear-gradient(135deg, #45B7D1, #3A86FF);
+          transform: scale(1.1);
+          box-shadow: 0 6px 20px rgba(69, 183, 209, 0.4);
+        }
+
+        .speak-button.speaking {
+          animation: speakPulse 0.8s ease-in-out infinite;
+          background: linear-gradient(135deg, #FF6B6B, #FF4757);
+        }
+
+        .speak-button.large {
+          width: auto;
+          padding: 0.7rem 1.5rem;
+          border-radius: 25px;
+          gap: 0.5rem;
+          font-weight: bold;
+          font-size: 1.1rem;
+        }
+
+        .member-details {
+          background: linear-gradient(135deg, white, #fafafa);
+          border-radius: 25px;
+          padding: 2rem;
+          display: flex;
+          gap: 2rem;
+          margin-top: 2rem;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+          animation: slideUp 0.5s ease-out;
+          border: 2px solid rgba(131, 56, 236, 0.2);
+        }
+
+        .details-content {
+          flex: 1;
+        }
+
+        .details-content h2 {
+          color: #8338EC;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .details-content p {
+          color: #1A535C;
+          font-size: 1.1rem;
+          line-height: 1.6;
+          margin-bottom: 2rem;
+        }
+
+        .details-actions {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
+        .close-button {
+          background: linear-gradient(135deg, #F7FFF7, #E8F5E8);
+          color: #1A535C;
+          border: 2px solid #45B7D1;
+          padding: 0.7rem 1.5rem;
+          border-radius: 25px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-weight: bold;
+          font-size: 1.1rem;
+        }
+
+        .close-button:hover {
+          background: linear-gradient(135deg, #45B7D1, #3A86FF);
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(69, 183, 209, 0.3);
+        }
+
+        .details-image {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 15px;
+          overflow: hidden;
+        }
+
+        .details-image img {
+          max-width: 100%;
+          max-height: 300px;
+          object-fit: cover;
+          border-radius: 15px;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+        }
+
+        .details-image img:hover {
+          transform: scale(1.05);
+        }
+
+        .reward-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.95);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2000;
+          animation: fadeIn 0.5s ease-out;
+          backdrop-filter: blur(10px);
+        }
+
+        .reward-content {
+          background: linear-gradient(135deg, white, #f8f9ff);
+          padding: 3rem;
+          border-radius: 30px;
+          text-align: center;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+          position: relative;
+          overflow: hidden;
+          max-width: 500px;
+          animation: rewardBounce 0.6s ease-out;
+          border: 3px solid #FFBE0B;
+        }
+
+        .reward-icon {
+          font-size: 5rem;
+          color: #FFBE0B;
+          margin-bottom: 1rem;
+          animation: rewardSpin 2s ease-in-out infinite;
+          text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .reward-content h2 {
+          color: #8338EC;
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .reward-content p {
+          color: #1A535C;
+          font-size: 1.3rem;
+          margin-bottom: 2rem;
+        }
+
+        .reward-particles {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .reward-particle {
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          animation: rewardParticle 2s ease-out forwards;
+        }
+
+        .floating-element {
+          position: absolute;
+          font-size: 2rem;
+          color: #FF6B6B;
+          pointer-events: none;
+          z-index: 1;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .floating-element.dog {
+          top: 10%;
+          right: 5%;
+          color: #8338EC;
+          font-size: 3rem;
+          animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        .floating-element.heart {
+          bottom: 10%;
+          left: 5%;
+          color: #FF006E;
+          animation: gentleFloat 4s ease-in-out infinite reverse;
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-15px);
+          }
+          60% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          }
+          50% {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 190, 11, 0.3);
+          }
+          100% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        @keyframes wiggle {
+          0%, 100% {
+            transform: rotate(0deg) scale(1);
+          }
+          25% {
+            transform: rotate(5deg) scale(1.05);
+          }
+          75% {
+            transform: rotate(-5deg) scale(1.05);
+          }
+        }
+
+        @keyframes speakPulse {
+          0% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+          }
+          50% {
+            transform: scale(1.15);
+            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
+          }
+          100% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+          }
+        }
+
+        @keyframes starBurst {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.3) rotate(180deg);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes rewardBounce {
+          0% {
+            opacity: 0;
+            transform: scale(0.3);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes rewardSpin {
+          0% {
+            transform: rotate(0deg) scale(1);
+          }
+          50% {
+            transform: rotate(180deg) scale(1.2);
+          }
+          100% {
+            transform: rotate(360deg) scale(1);
+          }
+        }
+
+        
+
+        @keyframes gentleFloat {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          33% {
+            transform: translateY(-15px) rotate(5deg);
+          }
+          66% {
+            transform: translateY(-5px) rotate(-3deg);
+          }
+        }
+
+        @keyframes confettiFall {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(200px) rotate(720deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes sparkleFloat {
+          0% {
+            opacity: 0;
+            transform: translateY(0) scale(0);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(-30px) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-60px) scale(0);
+          }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .homepage-container {
+            padding: 1rem;
+          }
+
+          .family-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+          }
+          
+          .member-details {
+            flex-direction: column;
+            padding: 1.5rem;
+          }
+          
+          .details-image img {
+            max-height: 200px;
+          }
+          
+          .homepage-header {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+
+          .homepage-header h1 {
+            font-size: 2rem;
+          }
+          
+          .star-count {
+            position: static;
+            margin-top: 1rem;
+          }
+
+          .introduction {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+          }
+
+          .introduction p {
+            max-width: 100%;
+          }
+
+          .reward-content {
+            margin: 1rem;
+            padding: 2rem;
+          }
+
+          .reward-content h2 {
+            font-size: 2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .family-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .homepage-header h1 {
+            font-size: 1.8rem;
+          }
+
+          .member-details {
+            padding: 1rem;
+          }
+
+          .details-actions {
+            flex-direction: column;
+            align-items: center;
+          }
+        }

@@ -1,0 +1,269 @@
+:root {
+  --primary: #FF6B6B;
+  --secondary: #4ECDC4;
+  --accent: #FFBE0B;
+  --background: #F7FFF7;
+  --text: #1A535C;
+  --soft-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Comic Neue', cursive, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: calc(100vh - 80px); /* Account for navbar height */
+}
+
+.text-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.text-content h1 {
+  font-size: 3rem;
+  margin-top: 1.6rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  transition: 0.5s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-content h1:hover {
+  color: var(--secondary);
+  scale: 1.05;
+  transition: color 0.3s ease;
+}
+
+.text-content p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 2.3rem;
+}
+
+.features {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.feature-item:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.feature-item span {
+  font-size: 1.5rem;
+}
+
+.transition-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Tablet Responsive - 768px to 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .main-layout {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .text-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .text-content p {
+    font-size: 1.2rem;
+  }
+  
+  .feature-item {
+    font-size: 1rem;
+  }
+  
+  .feature-item span {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile and Small Tablet - Below 768px */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .text-content {
+    max-width: 100%;
+    order: 1;
+  }
+  
+  .text-content h1 {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .text-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+  }
+  
+  .features {
+    margin-top: 0.5rem;
+  }
+  
+  .feature-item {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  .feature-item span {
+    font-size: 1.4rem;
+  }
+  
+  .transition-effect {
+    font-size: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+/* Small Mobile - Below 480px */
+@media (max-width: 480px) {
+  .main-layout {
+    width: 100%;
+    padding: 0.5rem;
+    gap: 1.5rem;
+  }
+  
+  .text-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .text-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-item {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  
+  .feature-item span {
+    font-size: 1.2rem;
+  }
+  
+  .transition-effect {
+    font-size: 1.2rem;
+  }
+}
+
+/* Extra Small Mobile - Below 360px */
+@media (max-width: 360px) {
+  .main-layout {
+    padding: 0.25rem;
+    gap: 1rem;
+  }
+  
+  .text-content h1 {
+    font-size: 1.6rem;
+  }
+  
+  .text-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .features {
+    gap: 0.8rem;
+  }
+  
+  .feature-item {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+  
+  .feature-item span {
+    font-size: 1.1rem;
+  }
+}
+
+/* Large Desktop - Above 1440px */
+@media (min-width: 1441px) {
+  .main-layout {
+    padding: 3rem;
+    gap: 3rem;
+  }
+  
+  .text-content h1 {
+    font-size: 3.5rem;
+  }
+  
+  .text-content p {
+    font-size: 1.4rem;
+  }
+  
+  .feature-item {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+  
+  .feature-item span {
+    font-size: 1.6rem;
+  }
+}

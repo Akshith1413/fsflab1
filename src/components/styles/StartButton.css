@@ -1,0 +1,699 @@
+.button-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  min-width: 300px;
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.3)
+  );
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.hover-text {
+  position: absolute;
+  bottom: -50px;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: var(--soft-shadow);
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.super-button-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.interactive-house {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  cursor: pointer;
+  transform-origin: center bottom;
+  z-index: 10;
+}
+
+.house-roof {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 80px solid #FF6B6B;
+  position: relative;
+  z-index: 3;
+}
+
+.roof-pattern {
+  position: absolute;
+  top: 20px;
+  left: -90px;
+  width: 180px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.house-body {
+  width: 180px;
+  height: 150px;
+  background-color: #45B7D1;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.house-door {
+  width: 50px;
+  height: 80px;
+  background-color: #A5DD9B;
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.door-knob {
+  width: 10px;
+  height: 10px;
+  background-color: #FFBE0B;
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.house-window {
+  width: 70px;
+  height: 70px;
+  background-color: #F7FFF7;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.window-character {
+  font-size: 2.5rem;
+  color: #FF6B6B;
+}
+
+.house-text {
+  position: absolute;
+  bottom: -80px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8338EC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.house-base {
+  width: 220px;
+  height: 20px;
+  background-color: #A5DD9B;
+  position: absolute;
+  bottom: -20px;
+  left: -10px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.helper-text {
+  position: absolute;
+  bottom: -80px;
+  background-color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: #3A86FF;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.particle-system {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 5;
+}
+
+.particle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+}
+
+.particle.heart {
+  background-color: #FF006E;
+}
+
+.particle.star {
+  background-color: #FFBE0B;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  background-color: #3A86FF;
+}
+
+.shooting-star {
+  position: absolute;
+  background-color: #FFBE0B;
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-45deg);
+}
+
+.star-tail {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, #FFBE0B, transparent);
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 1.5rem;
+  color: #FF6B6B;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-icon.music-note {
+  top: 20%;
+  left: 10%;
+}
+
+.floating-icon.sparkles {
+  top: 70%;
+  right: 10%;
+  color: #FFBE0B;
+}
+
+.floating-icon.jumping-dog {
+  bottom: 10%;
+  left: 15%;
+  color: #8338EC;
+  font-size: 2rem;
+}
+
+/* Animation for when clicked */
+@keyframes houseJump {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Tablet Responsive - 768px to 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .super-button-container {
+    width: 280px;
+    height: 370px;
+  }
+  
+  .interactive-house {
+    width: 180px;
+    height: 230px;
+  }
+  
+  .house-roof {
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-bottom: 70px solid #FF6B6B;
+  }
+  
+  .roof-pattern {
+    left: -80px;
+    width: 160px;
+    height: 35px;
+  }
+  
+  .house-body {
+    width: 160px;
+    height: 135px;
+  }
+  
+  .house-door {
+    width: 45px;
+    height: 72px;
+    left: 27px;
+  }
+  
+  .house-window {
+    width: 60px;
+    height: 60px;
+    right: 25px;
+  }
+  
+  .window-character {
+    font-size: 2.2rem;
+  }
+  
+  .house-text {
+    font-size: 1.3rem;
+    bottom: -70px;
+  }
+  
+  .house-base {
+    width: 200px;
+    left: -10px;
+  }
+  
+  .helper-text {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    bottom: -70px;
+  }
+  
+  .floating-icon {
+    font-size: 1.3rem;
+  }
+  
+  .floating-icon.jumping-dog {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile and Small Tablet - Below 768px */
+@media (max-width: 768px) {
+  .super-button-container {
+    width: 250px;
+    height: 320px;
+    margin-top: 1rem;
+  }
+  
+  .interactive-house {
+    width: 160px;
+    height: 200px;
+  }
+  
+  .house-roof {
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 60px solid #FF6B6B;
+  }
+  
+  .roof-pattern {
+    top: 15px;
+    left: -70px;
+    width: 140px;
+    height: 30px;
+  }
+  
+  .house-body {
+    width: 140px;
+    height: 120px;
+  }
+  
+  .house-door {
+    width: 40px;
+    height: 64px;
+    left: 24px;
+  }
+  
+  .door-knob {
+    width: 8px;
+    height: 8px;
+    top: 32px;
+    right: 4px;
+  }
+  
+  .house-window {
+    width: 55px;
+    height: 55px;
+    top: 18px;
+    right: 22px;
+  }
+  
+  .window-character {
+    font-size: 2rem;
+  }
+  
+  .house-text {
+    font-size: 1.2rem;
+    bottom: -60px;
+    gap: 8px;
+  }
+  
+  .house-base {
+    width: 180px;
+    height: 18px;
+    left: -10px;
+    bottom: -18px;
+  }
+  
+  .helper-text {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem;
+    bottom: -60px;
+    white-space: normal;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .floating-icon {
+    font-size: 1.2rem;
+  }
+  
+  .floating-icon.jumping-dog {
+    font-size: 1.6rem;
+  }
+}
+
+/* Small Mobile - Below 480px */
+@media (max-width: 480px) {
+  .super-button-container {
+    width: 220px;
+    height: 290px;
+  }
+  
+  .interactive-house {
+    width: 140px;
+    height: 180px;
+  }
+  
+  .house-roof {
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 55px solid #FF6B6B;
+  }
+  
+  .roof-pattern {
+    top: 12px;
+    left: -62px;
+    width: 124px;
+    height: 28px;
+  }
+  
+  .house-body {
+    width: 125px;
+    height: 105px;
+  }
+  
+  .house-door {
+    width: 35px;
+    height: 56px;
+    left: 21px;
+  }
+  
+  .door-knob {
+    width: 7px;
+    height: 7px;
+    top: 28px;
+    right: 3px;
+  }
+  
+  .house-window {
+    width: 50px;
+    height: 50px;
+    top: 15px;
+    right: 20px;
+  }
+  
+  .window-character {
+    font-size: 1.8rem;
+  }
+  
+  .house-text {
+    font-size: 1.1rem;
+    bottom: -55px;
+    gap: 6px;
+  }
+  
+  .house-base {
+    width: 160px;
+    height: 16px;
+    left: -10px;
+    bottom: -16px;
+  }
+  
+  .helper-text {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    bottom: -55px;
+    max-width: 180px;
+  }
+  
+  .floating-icon {
+    font-size: 1.1rem;
+  }
+  
+  .floating-icon.jumping-dog {
+    font-size: 1.4rem;
+  }
+}
+
+/* Extra Small Mobile - Below 360px */
+@media (max-width: 360px) {
+  .super-button-container {
+    width: 200px;
+    height: 260px;
+  }
+  
+  .interactive-house {
+    width: 120px;
+    height: 160px;
+  }
+  
+  .house-roof {
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 48px solid #FF6B6B;
+  }
+  
+  .roof-pattern {
+    top: 10px;
+    left: -54px;
+    width: 108px;
+    height: 24px;
+  }
+  
+  .house-body {
+    width: 108px;
+    height: 90px;
+  }
+  
+  .house-door {
+    width: 30px;
+    height: 48px;
+    left: 18px;
+  }
+  
+  .door-knob {
+    width: 6px;
+    height: 6px;
+    top: 24px;
+    right: 3px;
+  }
+  
+  .house-window {
+    width: 42px;
+    height: 42px;
+    top: 12px;
+    right: 18px;
+  }
+  
+  .window-character {
+    font-size: 1.5rem;
+  }
+  
+  .house-text {
+    font-size: 1rem;
+    bottom: -50px;
+    gap: 5px;
+  }
+  
+  .house-base {
+    width: 140px;
+    height: 14px;
+    left: -10px;
+    bottom: -14px;
+  }
+  
+  .helper-text {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+    bottom: -50px;
+    max-width: 160px;
+  }
+  
+  .floating-icon {
+    font-size: 1rem;
+  }
+  
+  .floating-icon.jumping-dog {
+    font-size: 1.2rem;
+  }
+}
+
+/* Large Desktop - Above 1440px */
+@media (min-width: 1441px) {
+  .super-button-container {
+    width: 350px;
+    height: 450px;
+  }
+  
+  .interactive-house {
+    width: 230px;
+    height: 280px;
+  }
+  
+  .house-roof {
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-bottom: 90px solid #FF6B6B;
+  }
+  
+  .roof-pattern {
+    top: 22px;
+    left: -105px;
+    width: 210px;
+    height: 45px;
+  }
+  
+  .house-body {
+    width: 200px;
+    height: 170px;
+  }
+  
+  .house-door {
+    width: 55px;
+    height: 88px;
+    left: 35px;
+  }
+  
+  .door-knob {
+    width: 12px;
+    height: 12px;
+    top: 44px;
+    right: 6px;
+  }
+  
+  .house-window {
+    width: 80px;
+    height: 80px;
+    top: 25px;
+    right: 35px;
+  }
+  
+  .window-character {
+    font-size: 2.8rem;
+  }
+  
+  .house-text {
+    font-size: 1.7rem;
+    bottom: -90px;
+    gap: 12px;
+  }
+  
+  .house-base {
+    width: 250px;
+    height: 22px;
+    left: -10px;
+    bottom: -22px;
+  }
+  
+  .helper-text {
+    font-size: 1.2rem;
+    padding: 1rem 1.4rem;
+    bottom: -90px;
+  }
+  
+  .floating-icon {
+    font-size: 1.7rem;
+  }
+  
+  .floating-icon.jumping-dog {
+    font-size: 2.2rem;
+  }
+}

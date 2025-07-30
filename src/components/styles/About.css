@@ -1,0 +1,131 @@
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #1A535C;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-header h1 {
+  color: #8338EC;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #45B7D1;
+}
+
+.header-icon {
+  font-size: 4rem;
+  color: #FF6B6B;
+  margin-bottom: 1rem;
+}
+
+.features-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #F7FFF7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #FF6B6B;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #8338EC;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  line-height: 1.6;
+}
+
+.developer-info {
+  background-color: #F7FFF7;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-top: 3rem;
+}
+
+.made-by-card {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.made-by-card h3 {
+  color: #FF6B6B;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.developer-name {
+  font-weight: bold;
+  color: #8338EC;
+}
+
+.developer-quote {
+  margin-top: 2rem;
+  text-align: left;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.developer-quote p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.developer-quote p::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #45B7D1;
+  font-size: 1.5rem;
+  font-family: serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .features-overview {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-header h1 {
+    font-size: 2rem;
+  }
+}
