@@ -14,13 +14,13 @@ const Quiz = () => {
   const [floatingElements, setFloatingElements] = useState([])
   const audioRef = useRef(null)
 
-  // Colors
+  
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#FB5607', 
     '#8338EC', '#3A86FF', '#FF006E', '#A5DD9B'
   ]
 
-  // Generate floating elements
+  
   useEffect(() => {
     const elements = Array.from({ length: 8 }, (_, i) => ({
       id: i,
@@ -34,7 +34,7 @@ const Quiz = () => {
     setFloatingElements(elements)
   }, [])
 
-  // Play sound effect
+  
   const playSound = (sound) => {
     if (audioRef.current) {
       audioRef.current.pause()
@@ -51,7 +51,7 @@ const Quiz = () => {
     setIsCorrect(correct)
     
     if (correct) {
-      playSound('/sounds/correct.mp3')
+      playSound('/sounds/Correct.mp3')
       setScore(score + 1)
     } else {
       playSound('/sounds/wrong.mp3')
@@ -91,7 +91,7 @@ const Quiz = () => {
       {/* Hidden audio element */}
       <audio ref={audioRef} />
       
-      {/* Floating decorative elements */}
+      
       {floatingElements.map((element) => (
         <motion.div
           key={element.id}
@@ -122,7 +122,7 @@ const Quiz = () => {
         </motion.div>
       ))}
       
-      {/* Quiz Header */}
+      
       <header className="quiz-header">
         <h1>Family Quiz Time!</h1>
         <div className="progress">
@@ -133,7 +133,7 @@ const Quiz = () => {
         </div>
       </header>
       
-      {/* Quiz Content */}
+      
       <div className="quiz-content">
         <AnimatePresence mode='wait'>
           {!quizCompleted ? (
@@ -274,7 +274,7 @@ const Quiz = () => {
         </AnimatePresence>
       </div>
       
-      {/* Feedback Animation */}
+      
       <AnimatePresence>
         {showFeedback && (
           <motion.div

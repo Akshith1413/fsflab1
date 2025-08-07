@@ -19,7 +19,7 @@ const Form = ({ isSignUp = false }) => {
   const [activeExpression, setActiveExpression] = useState(0)
   const [countdown, setCountdown] = useState(3);
   const [showBoom, setShowBoom] = useState(false);
-  // Character expressions - reduced complexity
+  // Character expression
   const expressions = [
     <FaSmile className="expression" />,
     <RiEmotionHappyLine className="expression" />,
@@ -32,18 +32,17 @@ const Form = ({ isSignUp = false }) => {
   const handleSignUpClick = () => {
     navigate('/signup');
   };
-  // Simplified color palette
+  
   const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#8338EC']
 
-  // Change expression periodically - slower for less distraction
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveExpression((prev) => (prev + 1) % expressions.length)
-    }, 4000) // Increased from 3000 to 4000
+    }, 4000) 
     return () => clearInterval(interval)
   }, [])
 
-  // Countdown effect for success page
   useEffect(() => {
     if (currentStep === 2) {
       if (countdown > 0) {
@@ -64,7 +63,7 @@ const Form = ({ isSignUp = false }) => {
       [name]: value
     })
     
-    // Clear error when typing
+    
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -112,7 +111,7 @@ const Form = ({ isSignUp = false }) => {
     e.preventDefault()
     if (validate()) {
       setIsSubmitting(true)
-      // Simulate API call
+      
       setTimeout(() => {
         setIsSubmitting(false)
         // Set authentication token in localStorage
@@ -120,7 +119,6 @@ const Form = ({ isSignUp = false }) => {
         localStorage.setItem('username', formData.username)
         setCurrentStep(2)
         
-        // Mock redirect after success
         setTimeout(() => {
           console.log('Redirecting to learning page...')
         }, 2000)
@@ -146,7 +144,7 @@ const Form = ({ isSignUp = false }) => {
       overflow: 'hidden',
       fontFamily: 'system-ui, sans-serif'
     }}>
-      {/* Subtle floating sparkles - reduced quantity */}
+      
       {currentStep === 1 && Array.from({ length: 3 }).map((_, i) => (
         <motion.div
           key={i}
@@ -176,7 +174,7 @@ const Form = ({ isSignUp = false }) => {
         </motion.div>
       ))}
       
-      {/* Form Character Guide */}
+      
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -258,7 +256,7 @@ const Form = ({ isSignUp = false }) => {
               {isSignUp ? 'Join Our Family!' : 'Welcome Back!'}
             </h2>
             
-            {/* Username Field */}
+            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{
                 display: 'flex',
@@ -321,7 +319,7 @@ const Form = ({ isSignUp = false }) => {
               )}
             </div>
             
-            {/* Email Field (Sign Up Only) */}
+            
             {isSignUp && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{
@@ -386,7 +384,7 @@ const Form = ({ isSignUp = false }) => {
               </div>
             )}
             
-            {/* Password Field */}
+            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{
                 display: 'flex',
@@ -449,7 +447,7 @@ const Form = ({ isSignUp = false }) => {
               )}
             </div>
             
-            {/* Confirm Password Field (Sign Up Only) */}
+            
             {isSignUp && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{
@@ -717,7 +715,7 @@ const Form = ({ isSignUp = false }) => {
               </AnimatePresence>
             </div>
 
-            {/* Enhanced celebration particles */}
+            
             <motion.div
               style={{
                 position: 'absolute',
@@ -733,7 +731,7 @@ const Form = ({ isSignUp = false }) => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              {/* Floating shapes */}
+              
               {Array.from({ length: 12 }).map((_, i) => {
                 const randomShape = Math.random() > 0.5 ? 'circle' : 'square';
                 const size = 8 + Math.random() * 8;
@@ -781,7 +779,7 @@ const Form = ({ isSignUp = false }) => {
               })}
             </motion.div>
 
-            {/* Subtle background animation */}
+            
             <motion.div
               style={{
                 position: 'absolute',

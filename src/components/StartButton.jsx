@@ -22,7 +22,7 @@ const StartButton = ({ onClick }) => {
   const controls = useAnimation()
   const buttonRef = useRef(null)
 
-  // Character expressions
+  
   const expressions = [
     <FaSmile className="expression" />,
     <RiEmotionHappyLine className="expression" />,
@@ -30,27 +30,37 @@ const StartButton = ({ onClick }) => {
   ]
   const [currentExpression, setCurrentExpression] = useState(0)
 
-  // Colors
+ 
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#FB5607', 
     '#8338EC', '#3A86FF', '#FF006E', '#A5DD9B'
   ]
 
-  // Sound effects (uncomment to enable)
-  /*
+  
+  
   const playSound = () => {
-    const sounds = [
-      '/sounds/pop.mp3',
-      '/sounds/boing.mp3',
-      '/sounds/twinkle.mp3'
-    ]
-    const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)])
-    sound.volume = 0.3
-    sound.play()
-  }
-  */
+  const sounds = [
+    '/sounds/pop.mp3',
+    '/sounds/boing.mp3',
+    '/sounds/twinkle.mp3'
+  ];
+  
+  const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+  sound.volume = 0.3;
+  sound.loop = true; 
 
-  // Expression changer
+  sound.play();
+
+  setTimeout(() => {
+    sound.pause();
+    sound.currentTime = 0;
+    sound.loop = false; 
+  }, 5000);
+};
+
+  
+
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentExpression((prev) => (prev + 1) % expressions.length)
@@ -58,7 +68,7 @@ const StartButton = ({ onClick }) => {
     return () => clearInterval(interval)
   }, [])
 
-  // Regular particles
+  
   const generateParticles = () => {
     const particles = Array.from({ length: 25 }, (_, i) => ({
       id: `particle-${Date.now()}-${i}`,
@@ -76,7 +86,7 @@ const StartButton = ({ onClick }) => {
     }, 1500)
   }
 
-  // Bubble particles
+  
   const generateBubbles = () => {
     const bubbles = Array.from({ length: 15 }, (_, i) => ({
       id: `bubble-${Date.now()}-${i}`,
@@ -92,7 +102,7 @@ const StartButton = ({ onClick }) => {
     }, 3000)
   }
 
-  // Shooting stars
+  
   const generateStars = () => {
     const stars = Array.from({ length: 8 }, (_, i) => ({
       id: `star-${Date.now()}-${i}`,
@@ -110,7 +120,7 @@ const StartButton = ({ onClick }) => {
 
   const handleClick = () => {
     setIsClicked(true)
-    // playSound()
+    playSound()
     generateParticles()
     generateBubbles()
     generateStars()
@@ -145,7 +155,7 @@ const StartButton = ({ onClick }) => {
 
   return (
     <div className="super-button-container" ref={buttonRef}>
-      {/* Main Interactive House Character */}
+      
       <motion.div
         className="interactive-house"
         onClick={handleClick}
@@ -154,7 +164,7 @@ const StartButton = ({ onClick }) => {
         animate={controls}
         whileTap={{ scale: 0.95 }}
       >
-        {/* House Roof */}
+        
         <motion.div 
           className="house-roof"
           animate={{
@@ -169,9 +179,9 @@ const StartButton = ({ onClick }) => {
           <div className="roof-pattern"></div>
         </motion.div>
         
-        {/* House Body */}
+        
         <div className="house-body">
-          {/* Door */}
+          
           <motion.div 
             className="house-door"
             animate={{
@@ -185,7 +195,7 @@ const StartButton = ({ onClick }) => {
             <div className="door-knob"></div>
           </motion.div>
           
-          {/* Window with character */}
+          
           <div className="house-window">
             <motion.div 
               className="window-character"
@@ -203,7 +213,7 @@ const StartButton = ({ onClick }) => {
           </div>
         </div>
         
-        {/* House Text */}
+        
         <motion.div 
           className="house-text"
           animate={{
@@ -229,11 +239,11 @@ const StartButton = ({ onClick }) => {
           </motion.div>
         </motion.div>
         
-        {/* House Base */}
+        
         <div className="house-base"></div>
       </motion.div>
       
-      {/* Floating helper text */}
+     
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -247,9 +257,9 @@ const StartButton = ({ onClick }) => {
         )}
       </AnimatePresence>
       
-      {/* Particle Systems */}
+      
       <div className="particle-system">
-        {/* Regular particles */}
+        
         {activeParticles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -283,7 +293,7 @@ const StartButton = ({ onClick }) => {
           </motion.div>
         ))}
         
-        {/* Bubbles */}
+        
         {activeBubbles.map((bubble) => (
           <motion.div
             key={bubble.id}
@@ -311,7 +321,7 @@ const StartButton = ({ onClick }) => {
           />
         ))}
         
-        {/* Shooting stars */}
+        
         {activeStars.map((star) => (
           <motion.div
             key={star.id}
@@ -344,7 +354,7 @@ const StartButton = ({ onClick }) => {
         ))}
       </div>
       
-      {/* Floating decorative elements */}
+      
       <motion.div 
         className="floating-icon music-note"
         animate={{
