@@ -1,41 +1,51 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react' // ReactJS State Management Using React Hooks
+import { motion, AnimatePresence } from 'framer-motion' // ReactJS - Animation
 import { FaUser, FaLock, FaEnvelope, FaSmile, FaChild, FaHome, FaRocket, FaChessKnight, FaBrain } from 'react-icons/fa'
 import { GiSparkles,GiPartyPopper } from 'react-icons/gi'
 import { TbConfetti } from 'react-icons/tb'
 import { RiEmotionHappyLine } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom';
-const Form = ({ isSignUp = false }) => {
-    const navigate = useNavigate();
+import { useNavigate } from 'react-router-dom'; // ReactJS - Routing
+
+// ReactJS Components - Creating a functional component
+// ReactJS - Properties (props) - Component accepts isSignUp prop with default value
+const Form = ({ isSignUp = false }) => { // props
+    const navigate = useNavigate(); // ReactJS - Routing
+  
+  // ReactJS State Management Using React Hooks - Using useState for form data
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: ''
   })
+  
+  // ReactJS State Management Using React Hooks - Multiple state variables
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [activeExpression, setActiveExpression] = useState(0)
   const [countdown, setCountdown] = useState(3);
   const [showBoom, setShowBoom] = useState(false);
-  // Character expression
+  
+  // Character expression - JSX elements stored in array
   const expressions = [
-    <FaSmile className="expression" />,
-    <RiEmotionHappyLine className="expression" />,
-    <FaChild className="expression" />
+    <FaSmile className="expression" />, // ReactJS - JSX
+    <RiEmotionHappyLine className="expression" />, // ReactJS - JSX
+    <FaChild className="expression" /> // ReactJS - JSX
   ]
+  
+  // ReactJS - Event management - Event handlers
   const handleSignInClick = () => {
-    navigate('/signin');
+    navigate('/signin'); // ReactJS - Routing
   };
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    navigate('/signup'); // ReactJS - Routing
   };
   
   const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#8338EC']
 
-  
+  // ReactJS - Component Life Cycle Using React Hooks - useEffect for side effects
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveExpression((prev) => (prev + 1) % expressions.length)
@@ -43,6 +53,7 @@ const Form = ({ isSignUp = false }) => {
     return () => clearInterval(interval)
   }, [])
 
+  // ReactJS - Component Life Cycle Using React Hooks - useEffect with dependencies
   useEffect(() => {
     if (currentStep === 2) {
       if (countdown > 0) {
@@ -50,12 +61,13 @@ const Form = ({ isSignUp = false }) => {
         return () => clearTimeout(timer)
       } else {
         setShowBoom(true)
-        const redirectTimer = setTimeout(() => navigate('/home'), 2000)
+        const redirectTimer = setTimeout(() => navigate('/home'), 2000) // ReactJS - Routing
         return () => clearTimeout(redirectTimer)
       }
     }
   }, [countdown, currentStep, navigate])
 
+  // ReactJS - Event management - Form input change handler
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({
@@ -63,7 +75,7 @@ const Form = ({ isSignUp = false }) => {
       [name]: value
     })
     
-    
+    // Clear errors when user starts typing
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -81,7 +93,8 @@ const Form = ({ isSignUp = false }) => {
       newErrors.username = 'Name too short!'
     }
     
-    if (isSignUp) {
+    // ReactJS - Conditional Rendering - Different validation based on isSignUp prop
+    if (isSignUp) { // props
       if (!formData.email.trim()) {
         newErrors.email = 'We need your email!'
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -107,6 +120,8 @@ const Form = ({ isSignUp = false }) => {
     return Object.keys(newErrors).length === 0
   }
 
+  // ReactJS - Event management - Form submit handler
+  // ReactJS Form Programming - Form submission handling
   const handleSubmit = (e) => {
     e.preventDefault()
     if (validate()) {
@@ -132,6 +147,7 @@ const Form = ({ isSignUp = false }) => {
     return '#45B7D1'
   }
 
+  // ReactJS - JSX - Component's render method using JSX
   return (
     <div style={{
       position: 'relative',
@@ -145,9 +161,11 @@ const Form = ({ isSignUp = false }) => {
       fontFamily: 'system-ui, sans-serif'
     }}>
       
+      {/* ReactJS Lists - Mapping over array to create elements */}
+      {/* ReactJS - Keys - Each mapped element should have a key prop */}
       {currentStep === 1 && Array.from({ length: 3 }).map((_, i) => (
         <motion.div
-          key={i}
+          key={i} // ReactJS - Keys
           style={{
             position: 'absolute',
             zIndex: 1,
@@ -224,18 +242,21 @@ const Form = ({ isSignUp = false }) => {
             borderBottom: '10px solid transparent',
             borderRight: '10px solid #F7FFF7'
           }} />
+          {/* ReactJS - Conditional Rendering - Different text based on currentStep and isSignUp */}
           {currentStep === 1 ? (
-            isSignUp ? "Let's create your special account!" : "Welcome back friend!"
+            isSignUp ? "Let's create your special account!" : "Welcome back friend!" // props
           ) : (
             "You did amazing! Let's go learn!"
           )}
         </motion.div>
       </div>
       
+      {/* ReactJS - Animation - AnimatePresence for exit animations */}
       <AnimatePresence>
+        {/* ReactJS - Conditional Rendering - Show different content based on currentStep */}
         {currentStep === 1 ? (
           <motion.form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit} // ReactJS - Event management
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -253,10 +274,11 @@ const Form = ({ isSignUp = false }) => {
               marginBottom: '1rem',
               fontSize: '2rem'
             }}>
-              {isSignUp ? 'Join Our Family!' : 'Welcome Back!'}
+              {/* ReactJS - Conditional Rendering - Different title based on isSignUp prop */}
+              {isSignUp ? 'Join Our Family!' : 'Welcome Back!'} {/* props */}
             </h2>
             
-            
+            {/* ReactJS Form Programming - Controlled Component - Input controlled by React state */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{
                 display: 'flex',
@@ -271,8 +293,8 @@ const Form = ({ isSignUp = false }) => {
                 <input
                   type="text"
                   name="username"
-                  value={formData.username}
-                  onChange={handleChange}
+                  value={formData.username} // ReactJS Controlled Component - Value controlled by state
+                  onChange={handleChange} // ReactJS - Event management
                   style={{
                     width: '100%',
                     padding: '1rem',
@@ -285,6 +307,7 @@ const Form = ({ isSignUp = false }) => {
                     boxSizing: 'border-box'
                   }}
                 />
+                {/* ReactJS - Conditional Rendering - Show checkmark when valid */}
                 {formData.username && !errors.username && (
                   <motion.span 
                     style={{
@@ -302,6 +325,7 @@ const Form = ({ isSignUp = false }) => {
                   </motion.span>
                 )}
               </div>
+              {/* ReactJS - Conditional Rendering - Show error message if exists */}
               {errors.username && (
                 <motion.div 
                   style={{
@@ -319,8 +343,8 @@ const Form = ({ isSignUp = false }) => {
               )}
             </div>
             
-            
-            {isSignUp && (
+            {/* ReactJS - Conditional Rendering - Show email field only for signup */}
+            {isSignUp && ( // props
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{
                   display: 'flex',
@@ -335,8 +359,8 @@ const Form = ({ isSignUp = false }) => {
                   <input
                     type="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={formData.email} // ReactJS Controlled Component
+                    onChange={handleChange} // ReactJS - Event management
                     style={{
                       width: '100%',
                       padding: '1rem',
@@ -349,6 +373,7 @@ const Form = ({ isSignUp = false }) => {
                       boxSizing: 'border-box'
                     }}
                   />
+                  {/* ReactJS - Conditional Rendering */}
                   {formData.email && !errors.email && (
                     <motion.span 
                       style={{
@@ -366,6 +391,7 @@ const Form = ({ isSignUp = false }) => {
                     </motion.span>
                   )}
                 </div>
+                {/* ReactJS - Conditional Rendering */}
                 {errors.email && (
                   <motion.div 
                     style={{
@@ -384,7 +410,7 @@ const Form = ({ isSignUp = false }) => {
               </div>
             )}
             
-            
+            {/* ReactJS Form Programming - Password input */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{
                 display: 'flex',
@@ -393,14 +419,15 @@ const Form = ({ isSignUp = false }) => {
                 fontWeight: 'bold',
                 color: '#1A535C'
               }}>
-                <FaLock /> {isSignUp ? 'Create Secret Code' : 'Your Secret Code'}
+                <FaLock /> {/* ReactJS - Conditional Rendering */}
+                {isSignUp ? 'Create Secret Code' : 'Your Secret Code'} {/* props */}
               </label>
               <div style={{ position: 'relative' }}>
                 <input
                   type="password"
                   name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={formData.password} // ReactJS Controlled Component
+                  onChange={handleChange} // ReactJS - Event management
                   style={{
                     width: '100%',
                     padding: '1rem',
@@ -413,6 +440,7 @@ const Form = ({ isSignUp = false }) => {
                     boxSizing: 'border-box'
                   }}
                 />
+                {/* ReactJS - Conditional Rendering */}
                 {formData.password && !errors.password && (
                   <motion.span 
                     style={{
@@ -430,6 +458,7 @@ const Form = ({ isSignUp = false }) => {
                   </motion.span>
                 )}
               </div>
+              {/* ReactJS - Conditional Rendering */}
               {errors.password && (
                 <motion.div 
                   style={{
@@ -447,8 +476,8 @@ const Form = ({ isSignUp = false }) => {
               )}
             </div>
             
-            
-            {isSignUp && (
+            {/* ReactJS - Conditional Rendering - Confirm password only for signup */}
+            {isSignUp && ( // props
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{
                   display: 'flex',
@@ -463,8 +492,8 @@ const Form = ({ isSignUp = false }) => {
                   <input
                     type="password"
                     name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
+                    value={formData.confirmPassword} // ReactJS Controlled Component
+                    onChange={handleChange} // ReactJS - Event management
                     style={{
                       width: '100%',
                       padding: '1rem',
@@ -477,6 +506,7 @@ const Form = ({ isSignUp = false }) => {
                       boxSizing: 'border-box'
                     }}
                   />
+                  {/* ReactJS - Conditional Rendering */}
                   {formData.confirmPassword && !errors.confirmPassword && (
                     <motion.span 
                       style={{
@@ -494,6 +524,7 @@ const Form = ({ isSignUp = false }) => {
                     </motion.span>
                   )}
                 </div>
+                {/* ReactJS - Conditional Rendering */}
                 {errors.confirmPassword && (
                   <motion.div 
                     style={{
@@ -533,6 +564,7 @@ const Form = ({ isSignUp = false }) => {
               whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               disabled={isSubmitting}
             >
+              {/* ReactJS - Conditional Rendering - Different button content based on state */}
               {isSubmitting ? (
                 <motion.span
                   animate={{ rotate: 360 }}
@@ -540,7 +572,7 @@ const Form = ({ isSignUp = false }) => {
                 >
                   ⏳
                 </motion.span>
-              ) : isSignUp ? (
+              ) : isSignUp ? ( // props
                 'Join the Family!'
               ) : (
                 'Let Me In!'
@@ -552,7 +584,8 @@ const Form = ({ isSignUp = false }) => {
               marginTop: '1rem',
               color: '#1A535C'
             }}>
-              {isSignUp ? (
+              {/* ReactJS - Conditional Rendering - Different text and click handlers based on isSignUp */}
+              {isSignUp ? ( // props
                 <>
                   Already part of our family?{' '}
                   <span style={{
@@ -560,7 +593,7 @@ const Form = ({ isSignUp = false }) => {
                     fontWeight: 'bold',
                     textDecoration: 'underline',
                     cursor: 'pointer'
-                  }}onClick={handleSignInClick}>
+                  }}onClick={handleSignInClick}> {/* ReactJS - Event management */}
                     Sign In
                   </span>
                 </>
@@ -572,7 +605,7 @@ const Form = ({ isSignUp = false }) => {
                     fontWeight: 'bold',
                     textDecoration: 'underline',
                     cursor: 'pointer'
-                  }} onClick={handleSignUpClick}>
+                  }} onClick={handleSignUpClick}> {/* ReactJS - Event management */}
                     Create Account
                   </span>
                 </>
@@ -633,6 +666,7 @@ const Form = ({ isSignUp = false }) => {
 
             <div style={{ height: '120px', position: 'relative' }}>
               <AnimatePresence mode='wait'>
+                {/* ReactJS - Conditional Rendering - Show countdown or boom based on state */}
                 {countdown > 0 ? (
                   <motion.div
                     key="countdown"
@@ -715,7 +749,7 @@ const Form = ({ isSignUp = false }) => {
               </AnimatePresence>
             </div>
 
-            
+            {/* ReactJS - Animation - Animated confetti elements */}
             <motion.div
               style={{
                 position: 'absolute',
@@ -732,6 +766,8 @@ const Form = ({ isSignUp = false }) => {
               transition={{ delay: 0.5 }}
             >
               
+              {/* ReactJS Lists - Mapping over array to create confetti elements */}
+              {/* ReactJS - Keys - Each mapped element has a key */}
               {Array.from({ length: 12 }).map((_, i) => {
                 const randomShape = Math.random() > 0.5 ? 'circle' : 'square';
                 const size = 8 + Math.random() * 8;
@@ -739,7 +775,7 @@ const Form = ({ isSignUp = false }) => {
                 
                 return (
                   <motion.div
-                    key={i}
+                    key={i} // ReactJS - Keys
                     style={{
                       position: 'absolute',
                       width: `${size}px`,
@@ -773,13 +809,14 @@ const Form = ({ isSignUp = false }) => {
                       ease: "easeOut"
                     }}
                   >
+                    {/* ReactJS - Conditional Rendering - Show icon based on index */}
                     {i % 3 === 0 && <Icon style={{ color: 'white', fontSize: 'inherit' }} />}
                   </motion.div>
                 );
               })}
             </motion.div>
 
-            
+            {/* ReactJS - Animation - Animated background gradient */}
             <motion.div
               style={{
                 position: 'absolute',

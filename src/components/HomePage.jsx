@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react' // React Hooks
 import '/src/components/styles/HomePage.css' 
 import familyMembers from '/src/data/familyMembers'
 
+// Component
 const HomePage = () => {
+  // State Management using React Hooks
   const [activeMember, setActiveMember] = useState(null)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [collectedStars, setCollectedStars] = useState(0)
@@ -15,19 +17,20 @@ const HomePage = () => {
   const [keyboardMode, setKeyboardMode] = useState(false)
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false)
   
+  // Refs
   const synthRef = useRef(typeof window !== 'undefined' ? window.speechSynthesis : null)
   const rewardTimeoutRef = useRef(null)
   const sparkleIntervalRef = useRef(null)
   const memberRefs = useRef([])
   const lastInteractionType = useRef(null) 
 
-  
+  // Event management
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#FB5607', 
     '#8338EC', '#3A86FF', '#FF006E', '#A5DD9B'
   ]
 
-  
+  // Component Life Cycle using React Hooks (useEffect)
   useEffect(() => {
     memberRefs.current = memberRefs.current.slice(0, members.length)
   }, [members.length])
@@ -155,7 +158,7 @@ const HomePage = () => {
     }
   }, [activeMember, focusedIndex])
 
- 
+  // Animation
   useEffect(() => {
     sparkleIntervalRef.current = setInterval(() => {
       if (Math.random() > 0.7) {
@@ -180,7 +183,7 @@ const HomePage = () => {
     }
   }, [])
 
-
+  // Conditional Rendering
   useEffect(() => {
     let timeout
     if (showKeyboardHelp) {
@@ -191,7 +194,7 @@ const HomePage = () => {
     return () => clearTimeout(timeout)
   }, [showKeyboardHelp])
 
-  
+  // Event management
   const speak = (text) => {
     if (!synthRef.current) return
     
@@ -209,7 +212,7 @@ const HomePage = () => {
     synthRef.current.speak(utterance)
   }
 
-  
+  // Animation
   const createConfetti = (x, y) => {
     const newConfetti = Array.from({ length: 15 }, (_, i) => ({
       id: Date.now() + i,
@@ -226,7 +229,7 @@ const HomePage = () => {
     }, 3000)
   }
 
-  
+  // Event management
   const handleMemberClick = (member, event) => {
     const rect = event.currentTarget.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
@@ -259,14 +262,14 @@ const HomePage = () => {
     }
   }
 
-  
+  // Event management
   const handleMemberFocus = (index) => {
     if (keyboardMode) {
       setFocusedIndex(index)
     }
   }
 
-  
+  // Component Life Cycle using React Hooks (cleanup)
   useEffect(() => {
     return () => {
       if (synthRef.current) {
@@ -283,7 +286,7 @@ const HomePage = () => {
 
   return (
     <>
-      
+      {/* Lists and Keys */}
       {confetti.map((particle) => (
         <div
           key={particle.id}
@@ -302,7 +305,7 @@ const HomePage = () => {
         />
       ))}
 
-      
+      {/* Lists and Keys */}
       {sparkles.map((sparkle) => (
         <div
           key={sparkle.id}
@@ -322,7 +325,7 @@ const HomePage = () => {
         />
       ))}
 
-      
+      {/* Styling */}
       <div
         style={{
           position: 'fixed',
@@ -339,7 +342,7 @@ const HomePage = () => {
       />
 
       <div className="homepage-container">
-        
+        {/* Conditional Rendering */}
         {showKeyboardHelp && (
           <div 
             className="keyboard-help"
@@ -361,7 +364,7 @@ const HomePage = () => {
           </div>
         )}
 
-        
+        {/* Component */}
         <header className="homepage-header">
           <div className="header-icon">
             🏠
@@ -372,7 +375,7 @@ const HomePage = () => {
           </div>
         </header>
         
-        
+        {/* Component */}
         <section className="introduction">
           <p>
             <span className="highlight">Hello friend!</span> Let's meet all the 
@@ -384,7 +387,7 @@ const HomePage = () => {
           </div>
         </section>
         
-        
+        {/* Lists and Keys */}
         <section className="family-grid">
           {members.map((member, index) => (
             <div
@@ -410,6 +413,7 @@ const HomePage = () => {
                     e.target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="${member.color.replace('#', '%23')}"/><text x="100" y="120" text-anchor="middle" fill="white" font-size="60">${member.name.charAt(0)}</text></svg>`
                   }}
                 />
+                {/* Conditional Rendering */}
                 {member.viewed && (
                   <div className="viewed-badge">
                     ⭐
@@ -431,7 +435,7 @@ const HomePage = () => {
           ))}
         </section>
         
-        
+        {/* Conditional Rendering */}
         {activeMember && (
           <div className="modal-overlay">
             <div className="modal-content">
@@ -504,7 +508,7 @@ const HomePage = () => {
           </div>
         )}
         
-        
+        {/* Conditional Rendering */}
         {showReward && (
           <div className="reward-overlay">
             <div className="reward-content">
@@ -514,6 +518,7 @@ const HomePage = () => {
               <h2>Amazing Job!</h2>
               <p>You've met all the family members!</p>
               <div className="reward-particles">
+                {/* Lists and Keys */}
                 {Array.from({ length: 30 }).map((_, i) => (
                   <div
                     key={i}
@@ -529,7 +534,7 @@ const HomePage = () => {
           </div>
         )}
         
-        
+        {/* Styling */}
         <div className="floating-element dog" style={{
           top: '11%',
           fontSize: '3rem'}}>
@@ -547,6 +552,7 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* Styling */}
       <style jsx>{`
         @keyframes fadeInOut {
           0% { opacity: 0; transform: translateY(-10px); }
@@ -569,7 +575,7 @@ const HomePage = () => {
           }
         }
 
-        
+        /* Styling */
         .family-member.keyboard-focused {
           transform: translateY(-10px) scale(1.02);
           box-shadow: 0 0 0 3px var(--member-color), 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -580,7 +586,7 @@ const HomePage = () => {
           outline: none;
         }
 
-        
+        /* Styling */
         .modal-overlay {
           position: fixed;
           top: 0;
@@ -694,7 +700,7 @@ const HomePage = () => {
           }
         }
 
-        
+        /* Styling */
         @media (max-width: 768px) {
           .modal-body {
             flex-direction: column;

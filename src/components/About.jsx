@@ -1,10 +1,14 @@
+// ReactJS - Components
 import { motion } from 'framer-motion'
 import { FaChild, FaHome, FaUsers, FaQuestionCircle, FaStar } from 'react-icons/fa'
 import { GiFamilyHouse } from 'react-icons/gi'
+// ReactJS Styling
 import '/src/components/styles/About.css'
-const About = () => {
+
+const About = () => { // ReactJS - Stateless Component
   return (
     <div className="about-container">
+      {/* ReactJS - Animation */}
       <motion.div 
         className="about-header"
         initial={{ opacity: 0, y: -20 }}
@@ -17,6 +21,7 @@ const About = () => {
       </motion.div>
 
       <div className="features-overview">
+        {/* ReactJS - Animation */}
         <motion.div 
           className="feature-card"
           initial={{ opacity: 0, x: -50 }}
@@ -34,6 +39,7 @@ const About = () => {
           </p>
         </motion.div>
 
+        {/* ReactJS - Animation */}
         <motion.div 
           className="feature-card"
           initial={{ opacity: 0, x: -50 }}
@@ -51,6 +57,7 @@ const About = () => {
           </p>
         </motion.div>
 
+        {/* ReactJS - Animation */}
         <motion.div 
           className="feature-card"
           initial={{ opacity: 0, x: -50 }}
@@ -76,6 +83,7 @@ const About = () => {
           </p>
         </motion.div>
 
+        {/* ReactJS - Animation */}
         <motion.div 
           className="feature-card"
           initial={{ opacity: 0, x: -50 }}
@@ -94,6 +102,7 @@ const About = () => {
         </motion.div>
       </div>
 
+      {/* ReactJS - Animation */}
       <motion.div 
         className="developer-info"
         initial={{ opacity: 0 }}

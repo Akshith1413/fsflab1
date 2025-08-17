@@ -1,4 +1,6 @@
+
 import { useState } from 'react';
+
 import { 
   FaHome, 
   FaInfoCircle, 
@@ -7,19 +9,24 @@ import {
   FaTimes,
   FaSignOutAlt 
 } from 'react-icons/fa';
+// Routing
 import { useNavigate } from 'react-router-dom';
+// Animation
 import { motion } from 'framer-motion';
 import { label } from 'framer-motion/client';
 
 const NavigationBar = () => {
+  // State Management using React Hooks
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const isAuthenticated = !!localStorage.getItem('authToken');
 
+  // Event management
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Event management
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('username');
@@ -27,25 +34,27 @@ const NavigationBar = () => {
     setIsMenuOpen(false);
   };
 
+  // Lists
   const navItems = [
     { icon: <FaHome className="nav-icon" />, label: 'Home', path: '/' },
     { icon: <FaUserFriends className="nav-icon" />, label: 'Family Members', path: '/home' },
     { icon: <FaInfoCircle className="nav-icon" />, label: 'About', path: '/about' },
     {
-    icon: (
-      <img
-        src="/images/quiz.png"
-        alt="Quiz"
-        className="nav-icon image"
-      />
-    ),
-    label: 'Quiz',
-    path: '/quiz',
-  },
+      icon: (
+        <img
+          src="/images/quiz.png"
+          alt="Quiz"
+          className="nav-icon image"
+        />
+      ),
+      label: 'Quiz',
+      path: '/quiz',
+    },
   ];
 
   return (
     <nav className="navbar">
+      
       <motion.div 
         className="navbar-logo"
         whileHover={{ scale: 1.05 }}
@@ -56,12 +65,15 @@ const NavigationBar = () => {
         Family Explorer
       </motion.div>
       
+      {/* Event management */}
       <button className="mobile-menu-btn" onClick={toggleMenu}>
         {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
       
+      {/* Lists and Keys */}
       <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
         {navItems.map((item, index) => (
+          
           <motion.li
             key={index}
             whileHover={{ backgroundColor: '#45B7D1', color: 'white' }}
@@ -76,7 +88,9 @@ const NavigationBar = () => {
           </motion.li>
         ))}
 
+        {/* Conditional Rendering */}
         {isAuthenticated && (
+         
           <motion.li
             className="logout-btn"
             whileHover={{ backgroundColor: '#FF6B6B', color: 'white' }}
@@ -89,6 +103,7 @@ const NavigationBar = () => {
         )}
       </ul>
 
+      {/* Styling */}
       <style jsx>{`
         .navbar {
           display: flex;
@@ -138,16 +153,18 @@ const NavigationBar = () => {
           color: #FF6B6B;
           font-weight: bold;
         }
-.nav-icon.image {
-    width: 24px;
-    height: 24px;
-    filter: invert(28%) sepia(22%) saturate(871%) hue-rotate(155deg) brightness(93%) contrast(90%);
-    transition: filter 0.3s ease;
-  }
-    
-  .nav-links li:hover .nav-icon.image {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-  }
+
+        .nav-icon.image {
+          width: 24px;
+          height: 24px;
+          filter: invert(28%) sepia(22%) saturate(871%) hue-rotate(155deg) brightness(93%) contrast(90%);
+          transition: filter 0.3s ease;
+        }
+        
+        .nav-links li:hover .nav-icon.image {
+          filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+
         .mobile-menu-btn {
           display: none;
           background: none;
@@ -157,6 +174,7 @@ const NavigationBar = () => {
           padding: 0.5rem;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: block;

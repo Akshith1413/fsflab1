@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react' // ReactJS State Management Using React Hooks
+import { motion, AnimatePresence } from 'framer-motion' // ReactJS - Animation
 import { FaStar, FaHeart, FaCheck, FaTimes, FaTrophy, FaChild } from 'react-icons/fa'
 import { GiSparkles, GiPartyPopper } from 'react-icons/gi'
 import questions from '../data/quizQuestions'
-import '/src/components/styles/Quiz.css'
+import '/src/components/styles/Quiz.css' // ReactJS Styling
+
+// ReactJS Components, ReactJS - Creating a React Application
 const Quiz = () => {
+  // ReactJS State Management Using React Hooks
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [score, setScore] = useState(0)
@@ -20,11 +23,11 @@ const Quiz = () => {
     '#8338EC', '#3A86FF', '#FF006E', '#A5DD9B'
   ]
 
-  
+  // ReactJS - Component Life Cycle Using React Hooks
   useEffect(() => {
     const elements = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      icon: Math.random() > 0.5 ? <GiSparkles /> : <FaHeart />,
+      icon: Math.random() > 0.5 ? <GiSparkles /> : <FaHeart />, // ReactJS - JSX
       size: Math.random() * 20 + 15,
       x: Math.random() * 80 + 10,
       y: Math.random() * 80 + 10,
@@ -45,6 +48,7 @@ const Quiz = () => {
     audio.play()
   }
 
+  // ReactJS - Event management
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer)
     const correct = answer === questions[currentQuestion].correctAnswer
@@ -71,6 +75,7 @@ const Quiz = () => {
     }, 2000)
   }
 
+  // ReactJS - Event management
   const restartQuiz = () => {
     setCurrentQuestion(0)
     setSelectedAnswer(null)
@@ -86,15 +91,16 @@ const Quiz = () => {
     return '#45B7D1'
   }
 
+  // ReactJS - JSX
   return (
     <div className="quiz-container">
       {/* Hidden audio element */}
       <audio ref={audioRef} />
       
-      
+      {/* ReactJS Lists */}
       {floatingElements.map((element) => (
         <motion.div
-          key={element.id}
+          key={element.id} // ReactJS - Keys
           className="floating-element"
           initial={{
             x: `${element.x}%`,
@@ -135,10 +141,11 @@ const Quiz = () => {
       
       
       <div className="quiz-content">
+        {/* ReactJS  Conditional Rendering */}
         <AnimatePresence mode='wait'>
           {!quizCompleted ? (
             <motion.div
-              key={`question-${currentQuestion}`}
+              key={`question-${currentQuestion}`} // ReactJS - Keys
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -166,11 +173,12 @@ const Quiz = () => {
               <h2>{questions[currentQuestion].question}</h2>
               
               <div className="answers-grid">
+                {/* ReactJS Lists */}
                 {questions[currentQuestion].answers.map((answer, index) => (
                   <motion.button
-                    key={index}
+                    key={index} // ReactJS - Keys
                     className={`answer-button ${selectedAnswer === answer ? 'selected' : ''}`}
-                    onClick={() => !showFeedback && handleAnswerSelect(answer)}
+                    onClick={() => !showFeedback && handleAnswerSelect(answer)} // ReactJS - Event management
                     disabled={showFeedback}
                     initial={{ scale: 1 }}
                     whileHover={{ scale: selectedAnswer ? 1 : 1.05 }}
@@ -181,6 +189,7 @@ const Quiz = () => {
                     }}
                   >
                     {answer}
+                    {/* ReactJS - Conditional Rendering */}
                     {showFeedback && answer === questions[currentQuestion].correctAnswer && (
                       <motion.span 
                         className="feedback-icon correct"
@@ -190,6 +199,7 @@ const Quiz = () => {
                         <FaCheck />
                       </motion.span>
                     )}
+                    {/* ReactJS - Conditional Rendering */}
                     {showFeedback && answer === selectedAnswer && !isCorrect && (
                       <motion.span 
                         className="feedback-icon incorrect"
@@ -205,7 +215,7 @@ const Quiz = () => {
             </motion.div>
           ) : (
             <motion.div
-              key="quiz-complete"
+              key="quiz-complete" // ReactJS - Keys
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               className="quiz-complete"
@@ -218,6 +228,7 @@ const Quiz = () => {
                 You scored {score} out of {questions.length}!
               </p>
               <div className="result-message">
+                {/* ReactJS - Conditional Rendering */}
                 {score === questions.length ? (
                   <>
                     Perfect! You know families so well! <GiPartyPopper />
@@ -235,7 +246,7 @@ const Quiz = () => {
               
               <motion.button
                 className="restart-button"
-                onClick={restartQuiz}
+                onClick={restartQuiz} // ReactJS - Event management
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -243,9 +254,10 @@ const Quiz = () => {
               </motion.button>
               
               <div className="celebration-particles">
+                {/* ReactJS Lists */}
                 {Array.from({ length: 20 }).map((_, i) => (
                   <motion.div
-                    key={i}
+                    key={i} // ReactJS - Keys
                     className="particle"
                     initial={{ 
                       x: 0,
@@ -274,7 +286,7 @@ const Quiz = () => {
         </AnimatePresence>
       </div>
       
-      
+      {/* ReactJS Conditional Rendering */}
       <AnimatePresence>
         {showFeedback && (
           <motion.div
@@ -283,6 +295,7 @@ const Quiz = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.5 }}
           >
+            {/* ReactJS - Conditional Rendering */}
             {isCorrect ? (
               <>
                 <motion.div
@@ -327,4 +340,4 @@ const Quiz = () => {
   )
 }
 
-export default Quiz
+export default Quiz 

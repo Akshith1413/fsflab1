@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+// ReactJS - Components
+import { useState, useEffect, useRef } from 'react' // ReactJS State Management, ReactJS State Management Using React Hooks
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+// ReactJS Styling
 import { 
   FaChild, 
   FaHome, 
@@ -13,54 +15,47 @@ import { GiSparkles, GiJumpingDog } from 'react-icons/gi'
 import { RiEmotionHappyLine } from 'react-icons/ri'
 import './styles/StartButton.css'
 
-const StartButton = ({ onClick }) => {
+// props
+const StartButton = ({ onClick }) => { 
+  // ReactJS State Management Using React Hooks
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
   const [activeParticles, setActiveParticles] = useState([])
   const [activeBubbles, setActiveBubbles] = useState([])
   const [activeStars, setActiveStars] = useState([])
   const controls = useAnimation()
-  const buttonRef = useRef(null)
+  const buttonRef = useRef(null) // ReactJS State Management Using React Hooks (useRef)
 
-  
   const expressions = [
     <FaSmile className="expression" />,
     <RiEmotionHappyLine className="expression" />,
     <FaChild className="expression" />
   ]
-  const [currentExpression, setCurrentExpression] = useState(0)
+  const [currentExpression, setCurrentExpression] = useState(0) // ReactJS State Management Using React Hooks
 
- 
   const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFBE0B', '#FB5607', 
     '#8338EC', '#3A86FF', '#FF006E', '#A5DD9B'
   ]
 
-  
-  
   const playSound = () => {
-  const sounds = [
-    '/sounds/pop.mp3',
-    '/sounds/boing.mp3',
-    '/sounds/twinkle.mp3'
-  ];
-  
-  const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
-  sound.volume = 0.3;
-  sound.loop = true; 
+    const sounds = [
+      '/sounds/pop.mp3',
+      '/sounds/boing.mp3',
+      '/sounds/twinkle.mp3'
+    ];
+    const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+    sound.volume = 0.3;
+    sound.loop = true; 
+    sound.play();
+    setTimeout(() => {
+      sound.pause();
+      sound.currentTime = 0;
+      sound.loop = false; 
+    }, 5000);
+  };
 
-  sound.play();
-
-  setTimeout(() => {
-    sound.pause();
-    sound.currentTime = 0;
-    sound.loop = false; 
-  }, 5000);
-};
-
-  
-
-  
+  // ReactJS - Component Life Cycle Using React Hooks
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentExpression((prev) => (prev + 1) % expressions.length)
@@ -68,7 +63,6 @@ const StartButton = ({ onClick }) => {
     return () => clearInterval(interval)
   }, [])
 
-  
   const generateParticles = () => {
     const particles = Array.from({ length: 25 }, (_, i) => ({
       id: `particle-${Date.now()}-${i}`,
@@ -80,13 +74,11 @@ const StartButton = ({ onClick }) => {
       rotation: Math.random() * 360
     }))
     setActiveParticles(particles)
-    
     setTimeout(() => {
       setActiveParticles([])
     }, 1500)
   }
 
-  
   const generateBubbles = () => {
     const bubbles = Array.from({ length: 15 }, (_, i) => ({
       id: `bubble-${Date.now()}-${i}`,
@@ -96,13 +88,11 @@ const StartButton = ({ onClick }) => {
       speed: Math.random() * 2 + 1
     }))
     setActiveBubbles(bubbles)
-    
     setTimeout(() => {
       setActiveBubbles([])
     }, 3000)
   }
 
-  
   const generateStars = () => {
     const stars = Array.from({ length: 8 }, (_, i) => ({
       id: `star-${Date.now()}-${i}`,
@@ -112,7 +102,6 @@ const StartButton = ({ onClick }) => {
       tailLength: Math.random() * 30 + 20
     }))
     setActiveStars(stars)
-    
     setTimeout(() => {
       setActiveStars([])
     }, 1000)
@@ -124,15 +113,13 @@ const StartButton = ({ onClick }) => {
     generateParticles()
     generateBubbles()
     generateStars()
-    
     controls.start({
       scale: [1, 1.1, 1],
       rotate: [0, 10, -10, 0],
       transition: { duration: 0.8 }
     })
-    
     setTimeout(() => {
-      onClick()
+      onClick() // props
     }, 1500)
   }
 
@@ -155,16 +142,16 @@ const StartButton = ({ onClick }) => {
 
   return (
     <div className="super-button-container" ref={buttonRef}>
-      
+      {/* ReactJS - Animation */}
       <motion.div
         className="interactive-house"
-        onClick={handleClick}
-        onHoverStart={handleHoverStart}
-        onHoverEnd={handleHoverEnd}
+        onClick={handleClick} // ReactJS - Event management
+        onHoverStart={handleHoverStart} // ReactJS - Event management
+        onHoverEnd={handleHoverEnd} // ReactJS - Event management
         animate={controls}
         whileTap={{ scale: 0.95 }}
       >
-        
+        {/* ReactJS - Animation */}
         <motion.div 
           className="house-roof"
           animate={{
@@ -178,10 +165,9 @@ const StartButton = ({ onClick }) => {
         >
           <div className="roof-pattern"></div>
         </motion.div>
-        
-        
+
         <div className="house-body">
-          
+          {/* ReactJS - Animation */}
           <motion.div 
             className="house-door"
             animate={{
@@ -194,9 +180,9 @@ const StartButton = ({ onClick }) => {
           >
             <div className="door-knob"></div>
           </motion.div>
-          
-          
+
           <div className="house-window">
+            {/* ReactJS - Animation */}
             <motion.div 
               className="window-character"
               animate={{
@@ -212,8 +198,8 @@ const StartButton = ({ onClick }) => {
             </motion.div>
           </div>
         </div>
-        
-        
+
+        {/* ReactJS - Animation */}
         <motion.div 
           className="house-text"
           animate={{
@@ -226,6 +212,7 @@ const StartButton = ({ onClick }) => {
           }}
         >
           START HERE!
+          {/* ReactJS - Animation */}
           <motion.div
             animate={{
               x: isHovered ? [0, 10, 0] : 0
@@ -238,14 +225,13 @@ const StartButton = ({ onClick }) => {
             <FaHandPointer />
           </motion.div>
         </motion.div>
-        
-        
+
         <div className="house-base"></div>
       </motion.div>
-      
-     
+
       <AnimatePresence>
         {isHovered && (
+          // ReactJS - Animation
           <motion.div
             className="helper-text"
             initial={{ opacity: 0, y: 20 }}
@@ -256,10 +242,9 @@ const StartButton = ({ onClick }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      
+
       <div className="particle-system">
-        
+        {/* ReactJS - Animation */}
         {activeParticles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -292,8 +277,8 @@ const StartButton = ({ onClick }) => {
             {particle.type === 'star' ? <FaStar /> : <FaHeart />}
           </motion.div>
         ))}
-        
-        
+
+        {/* ReactJS - Animation */}
         {activeBubbles.map((bubble) => (
           <motion.div
             key={bubble.id}
@@ -320,8 +305,8 @@ const StartButton = ({ onClick }) => {
             }}
           />
         ))}
-        
-        
+
+        {/* ReactJS - Animation */}
         {activeStars.map((star) => (
           <motion.div
             key={star.id}
@@ -353,8 +338,8 @@ const StartButton = ({ onClick }) => {
           </motion.div>
         ))}
       </div>
-      
-      
+
+      {/* ReactJS - Animation */}
       <motion.div 
         className="floating-icon music-note"
         animate={{
@@ -370,7 +355,8 @@ const StartButton = ({ onClick }) => {
       >
         <FaMusic />
       </motion.div>
-      
+
+      {/* ReactJS - Animation */}
       <motion.div 
         className="floating-icon sparkles"
         animate={{
@@ -387,7 +373,8 @@ const StartButton = ({ onClick }) => {
       >
         <GiSparkles />
       </motion.div>
-      
+
+      {/* ReactJS - Animation */}
       <motion.div 
         className="floating-icon jumping-dog"
         animate={{
